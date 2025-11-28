@@ -16,25 +16,28 @@ int main() {
         {
             printf("%d ",a[i]);
         }
+         max=a[0];
+         min=a[0];
         printf("\n");
-        for ( int i =0;i<n;i++)
+        for (int i =1;i<n;i++)
             {
                 if(a[i]> max)
                 {
                     max=a[i];
-                    printf("max mang la: %d \n",a[i]);
+                    
                 }
             }
-            for ( int i =0;i<n;i++)
+            printf("max mang la: %d \n",max);
+            for ( int i=1;i<n;i++)
             {
                 if(a[i]< min)
                 {
                     min=a[i];
-                    printf("min mang la: %d \n",a[i]);
                 }
             }
             
-            for (int i=0;i<n;i++)
+            printf("min mang la: %d \n",min);
+            for (int i=1;i<n;i++)
             {
                 for(int j=0;j<n;j++)
                 {
@@ -50,7 +53,7 @@ int main() {
                     }
                 }
             }
-            
+            printf("\n");
             printf("Cac so chia het cho 3 la: \n");
             for(int i=0;i<n;i++)
             {
