@@ -82,7 +82,20 @@
             printf("%d khong phai la so chinh phuong\n",x);
         }
         break;
-        case 2: printf("ban da chon chuc nang 2 tim uoc so chung va boi so chung cua 2 so\n");
+        case 2: 
+        int so1,so2,ucln,bcnn,i;
+        printf("Nhap so: \n");
+        scanf("%d %d", &so1, &so2);
+        for(i =1;i<=so1 && i<=so2;i++)
+        {
+           if(so1 % i == 0 && so2 % i == 0)
+           {
+            ucln = i;
+           }
+        }
+        printf("Uoc chung lon nhat la: %d\n",ucln);
+        bcnn = (so1*so2)/ucln;
+        printf("Boi chung nho nhat la: %d\n",bcnn);
         break;
         case 3: printf("ban da chon chuc nang 3 tinh tien cho quan karaoke\n");
         break;
