@@ -144,7 +144,7 @@
     }
         break;
         case 5:
-        int menhgia[] = {500, 200, 100, 50, 20, 10, 5, 2, 1}; 
+    int menhgia[] = {500,200,100,50,20,10,5,2,1}; 
     int tien; 
     int tien_con_lai;
     int soto;
@@ -168,6 +168,7 @@
             printf("%d to %d\n", soto, giatri);
             tien_con_lai %= giatri;
         }
+    }        
         break;
         case 6: 
         double vay,lai;
@@ -176,7 +177,7 @@
         printf("Nhap so tien muon vay: \n");
         scanf("%lf", &vay);
         double tonglai;
-        tonglai = vay * lai * (kyhan +1 )/ 2 
+        tonglai = vay * lai * (kyhan +1 )/ 2;
         double tongtien;
         tongtien = vay + tonglai;
         printf("Tong tien lai phai tra: %.0f VND\n", tonglai);
