@@ -1,5 +1,75 @@
-    #include <stdio.h>
-    int main()
+#include <stdio.h>
+#include <string.h>
+struct sinhvien {
+        int masv;
+        char name[50];
+        float diem;
+        char hocluc[50];
+    };
+void inputStructSV(struct sinhvien x[],int n)
+    {
+        int i;
+        for(i=0;i<n;i++)
+        {
+            printf("Nhap ma SV[%d]: \n",i);
+            scanf("%d", &x[i].masv);
+            getchar();  
+            printf("Nhap ten SV[%d]: \n",i);
+            scanf(" %s", &x[i].name);
+            printf("Nhap diem[%d]: \n",i);
+            scanf("%f", &x[i].diem);
+        }
+    }
+void printStruct(struct sinhvien x[],int n)
+    {
+        int i;
+        printf("Ma SV  ");
+        printf("Ho Ten  ");
+        printf("Diem  ");
+        printf("Hoc Luc  \n");
+        for(i=0;i<n;i++)
+        {
+            printf("%4d  ", x[i].masv);
+            printf("%6s  ", x[i].name);
+            printf("%4.1f  ", x[i].diem);
+            printf("%9s\n", x[i].hocluc);
+        }
+    }
+void xeploai(struct sinhvien x[],int n )
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+            if(x[i].diem<5)
+            {
+                strcpy (x[i].hocluc, "Yeu");
+            }
+            else if(x[i].diem<6.5)
+            {
+                strcpy (x[i].hocluc,"TB");
+            }
+            else if(x[i].diem<8)
+            {
+                strcpy (x[i].hocluc,"Kha");
+            }
+            else if(x[i].diem<9)
+            {
+                strcpy (x[i].hocluc,"Gioi");
+            }
+            else
+            {
+                strcpy (x[i].hocluc,"Xuat sac");
+            }
+    }
+}
+void swapStructSV(struct sinhvien *x,struct sinhvien *y)
+{
+    struct sinhvien temp;
+    temp=*x;
+    *x=*y;
+    *y=temp;
+}
+int main()
     {
         int luachon;
         do
@@ -80,7 +150,7 @@
         else 
         {
             printf("%d khong phai la so chinh phuong\n",x);
-        }
+        }   
         break;
         case 2: 
         int so1,so2,ucln,bcnn,i;
@@ -98,9 +168,33 @@
         printf("Boi chung nho nhat la: %d\n",bcnn);
         break;
         case 3:
-        int start,end,total;
+        int start,end,tgian;
+        float total = 0;
         printf("Nhap gio bat dau: \n");
         scanf("%d", &start);
+        printf("Nhap gio ket thuc: \n");
+        scanf("%d", &end);
+        if(start < 12 || end > 23 || start>=end )
+        {
+            printf("Nhap lai thoi gian\n");
+        }
+        else
+        {
+            tgian = end - start;
+        }
+        if(tgian < 3)
+        {
+            total = tgian * 50000;
+        }
+        else
+        {
+            total = 150000 + ( tgian - 3) * 35000;
+        }
+        if (start >=14 && start <=17)
+        {
+            total = total * 0.9;
+        }
+        printf("So tien can phai tra la %.0f VND\n",total);
         break;
         case 4:
         double dien,bac1,bac2,bac3,bac4,bac5,bac6,tong;
@@ -110,37 +204,37 @@
     bac4 =2.536;
     bac5 =2.834;
     bac6 =2.927;
-    printf("Nhap muc dien tieu thu");
+    printf("Nhap muc dien tieu thu:");
     scanf("%lf",&dien);
     if(dien >= 0 && dien <= 50)
     {
         tong = dien * bac1;
-        printf("So tien can phai dong la %.2lf",tong);
+        printf("So tien can phai dong la %.2lf\n",tong);
     }
       else if (dien >= 51 && dien <= 100)
     {
         tong = dien * bac2;
-        printf("So tien can phai dong la %.2lf",tong);
+        printf("So tien can phai dong la %.2lf\n",tong);
     }
     else if (dien >= 101 && dien <= 200)
     {
         tong = dien * bac3;
-        printf("So tien can phai dong la %.2lf",tong);
+        printf("So tien can phai dong la %.2lf\n",tong);
     }
     else if (dien >= 201 && dien <= 300)
     {
         tong = dien * bac4;
-        printf("So tien can phai dong la %.2lf",tong);
+        printf("So tien can phai dong la %.2lf\n",tong);
     }
     else if (dien >= 301 && dien <= 400)
     {
         tong = dien * bac5;
-        printf("So tien can phai dong la %.2lf",tong);
+        printf("So tien can phai dong la %.2lf\n",tong);
     }
     else 
     {
         tong = dien * bac6;
-        printf("So tien can phai dong la %.2lf",tong);
+        printf("So tien can phai dong la %.2lf\n",tong);
     }
         break;
         case 5:
@@ -149,10 +243,10 @@
     int tien_con_lai;
     int soto;
 
-    printf("Nhap so tien muon doi: \n");
+    printf("Nhap so tien muon doi:");
     scanf("%d", &tien);
     
-    tien_con_lai = tien;
+    tien_con_lai = tien;    
 
     printf("Ket qua: \n");
     
@@ -171,21 +265,64 @@
     }        
         break;
         case 6: 
-        double vay,lai;
-        lai = 0.05;
-        int kyhan = 12;
-        printf("Nhap so tien muon vay: \n");
-        scanf("%lf", &vay);
-        double tonglai;
-        tonglai = vay * lai * (kyhan +1 )/ 2;
-        double tongtien;
-        tongtien = vay + tonglai;
-        printf("Tong tien lai phai tra: %.0f VND\n", tonglai);
-    printf("Tong tien phai tra sau 12 thang: %.0f VND\n", tongtien);
+    double vay;
+    const double lai_suat = 0.05;
+    const int kyhan = 12;
+    double con_lai;
+    double goc_tra_hang_thang;
+    
+    printf("Nhap so tien muon vay (VND): \n");
+    scanf("%lf", &vay);
+    
+    goc_tra_hang_thang = vay / kyhan;
+    con_lai = vay;
+    
+    printf("\n--- Bang Chi Tiet Thanh Toan ---\n");
+    
+    printf("%-8s %-15s %-15s %-18s %-18s\n", 
+           "Ky han", "Lai phai tra", "Goc phai tra", "So tien phai tra", "So tien con lai");
+    
+    for (int k = 1; k <= kyhan; k++) {
+        double lai_phai_tra;
+        double so_tien_phai_tra;
+        
+        lai_phai_tra = tien_con_lai * lai_suat;
+        
+        so_tien_phai_tra = goc_tra_hang_thang + lai_phai_tra;
+        
+        con_lai -= goc_tra_hang_thang;
+        
+        if (k == kyhan) {
+            tien_con_lai = 0;
+        }
+
+        printf("%-8d %-15.0f %-15.0f %-18.0f %-18.0f\n",k,lai_phai_tra, goc_tra_hang_thang, 
+               so_tien_phai_tra, 
+               con_lai);
+    }
         break;
         case 7: printf("ban da chon chuc nang 7 vay tien mua xe\n");
         break;
-        case 8: printf("ban da chon chuc nang 8 sap xep thong tin sinh vien\n");
+        case 8:
+        int k,j,dssv;
+        struct sinhvien SA21303[39];
+        printf("Nhap so luong: \n");
+        scanf("%d", &dssv);
+        inputStructSV(SA21303,dssv);
+        printStruct(SA21303,dssv);
+        xeploai(SA21303,dssv);
+        for(k=0;k<dssv-1;k++)
+        {
+            for(j=k+1;j<dssv;j++)
+            {
+                if(SA21303[k].diem<SA21303[j].diem)
+                {
+                    swapStructSV(&SA21303[k],&SA21303[j]);
+                }       
+            }
+        }
+        printf("Danh sach SV sau khi sort: \n");
+        printStruct(SA21303,dssv);
         break;
         case 9: printf("ban da chon chuc nang 9 tay dunng game FPOLY-LOTT\n");
         break;
@@ -199,4 +336,4 @@
         }
      } while (luachon !=0);
         return 0;
-    }
+    }   
